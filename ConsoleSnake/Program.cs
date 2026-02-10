@@ -8,6 +8,11 @@ class Program
         // Sets the snake head's initial position to collumn 10 and row 5.
         int x = 10;
         int y = 5;
+
+        //Setting the boundaries of the game to the current size of the console window.
+        int width = Console.WindowWidth;
+        int height = Console.WindowHeight;
+
         // Main game loop that runs indefinitely.
         while (true)
         {
@@ -28,6 +33,16 @@ class Program
                 if (key == ConsoleKey.DownArrow) y++;
                 if (key == ConsoleKey.LeftArrow) x--;
                 if (key == ConsoleKey.RightArrow) x++;
+            }
+
+            // Checks if the snake head has moved beyond the boundaries of the console window. If so, it wraps around to the opposite side.
+            if (x < 0 || x>= width || y < 0 || y >= height)
+            {
+                // If the snake head goes out of bounds, the game is over. It clears the console and displays a game over message.
+                Console.Clear();
+                Console.SetCursorPosition(0, 0);
+                Console.WriteLine("Game Over! Press any key to exit.");
+                break;
             }
 
         }
