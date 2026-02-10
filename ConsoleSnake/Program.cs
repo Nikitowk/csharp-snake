@@ -19,8 +19,7 @@ class Program
         while (true)
         {
             Console.Clear();
-            // Sets the snake head to the current position of the x and y integers.
-            Console.SetCursorPosition(x, y);
+           
             // Draws the borders as "|", "-", and "+" characters.
 
             for (int xx = 0; xx < width; xx++)
@@ -58,10 +57,10 @@ class Program
                 Console.SetCursorPosition(width - 1, yy);
                 Console.Write("|");
             }
+            // Sets the snake head to the current position of the x and y integers.
+            Console.SetCursorPosition(x, y);
             // Draws the snake head as a "O" character.
             Console.Write("O");
-            // Pauses the game loop for 100 milliseconds to control the speed of the snake.
-            Thread.Sleep(100);
             // Checks if a key is pressed. If so, it reads the key and updates the snake's position accordingly.
             if (Console.KeyAvailable)
             {
@@ -83,6 +82,9 @@ class Program
                 Console.WriteLine("Game Over! Press any key to exit.");
                 break;
             }
+
+            // Pauses the game loop for 100 milliseconds to control the speed of the snake.
+            Thread.Sleep(100);
 
         }
     }
