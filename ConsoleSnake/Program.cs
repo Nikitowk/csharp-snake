@@ -6,12 +6,14 @@ class Program
     static void Main()
     {
         // Sets the snake head's initial position to collumn 10 and row 5.
-        int x = 10;
-        int y = 5;
+        
 
         //Setting the boundaries of the game to the current size of the console window.
         int width = Console.WindowWidth;
         int height = Console.WindowHeight;
+
+        int x = (width - 2) / 2 + 1;
+        int y = (height - 2) / 2 + 1;
 
         // Main game loop that runs indefinitely.
         while (true)
@@ -19,6 +21,43 @@ class Program
             Console.Clear();
             // Sets the snake head to the current position of the x and y integers.
             Console.SetCursorPosition(x, y);
+            // Draws the borders as "|", "-", and "+" characters.
+
+            for (int xx = 0; xx < width; xx++)
+            {
+                // Top row
+                if (xx == 0 || xx == width - 1)
+                {
+                    Console.SetCursorPosition(xx, 0);
+                    Console.Write("+"); // corners
+                }
+                else
+                {
+                    Console.SetCursorPosition(xx, 0);
+                    Console.Write("-");
+                }
+
+                // Bottom row
+                if (xx == 0 || xx == width - 1)
+                {
+                    Console.SetCursorPosition(xx, height - 1);
+                    Console.Write("+"); // corners
+                }
+                else
+                {
+                    Console.SetCursorPosition(xx, height - 1);
+                    Console.Write("-");
+                }
+            }
+
+            // Vertical walls (left and right)
+            for (int yy = 1; yy < height - 1; yy++) // skip corners
+            {
+                Console.SetCursorPosition(0, yy);
+                Console.Write("|");
+                Console.SetCursorPosition(width - 1, yy);
+                Console.Write("|");
+            }
             // Draws the snake head as a "O" character.
             Console.Write("O");
             // Pauses the game loop for 100 milliseconds to control the speed of the snake.
@@ -36,7 +75,7 @@ class Program
             }
 
             // Checks if the snake head has moved beyond the boundaries of the console window. If so, it wraps around to the opposite side.
-            if (x < 0 || x>= width || y < 0 || y >= height)
+            if (x == 0 || x == width - 1 || y == 0 || y == height - 1)
             {
                 // If the snake head goes out of bounds, the game is over. It clears the console and displays a game over message.
                 Console.Clear();
