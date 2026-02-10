@@ -15,11 +15,19 @@ class Program
         int x = (width - 2) / 2 + 1;
         int y = (height - 2) / 2 + 1;
 
+        string direction = "Right";
+
         // Main game loop that runs indefinitely.
         while (true)
         {
             Console.Clear();
-           
+
+
+            if (direction == "Up") y--;
+            if (direction == "Down") y++;
+            if (direction == "Left") x--;
+            if (direction == "Right") x++;
+
             // Draws the borders as "|", "-", and "+" characters.
 
             for (int xx = 0; xx < width; xx++)
@@ -67,10 +75,10 @@ class Program
                 // Reads the key that was pressed without displaying it in the console.
                 ConsoleKey key = Console.ReadKey(true).Key;
                 // The following if statements check which arrow key was pressed and update the x or y position of the snake head accordingly.
-                if (key == ConsoleKey.UpArrow) y--;
-                if (key == ConsoleKey.DownArrow) y++;
-                if (key == ConsoleKey.LeftArrow) x--;
-                if (key == ConsoleKey.RightArrow) x++;
+                if (key == ConsoleKey.UpArrow && direction != "Down") direction = "Up";
+                if (key == ConsoleKey.DownArrow && direction != "Up") direction = "Down";
+                if (key == ConsoleKey.LeftArrow && direction != "Right") direction = "Left";
+                if (key == ConsoleKey.RightArrow && direction != "Left") direction = "Right";
             }
 
             // Checks if the snake head has moved beyond the boundaries of the console window. If so, it wraps around to the opposite side.
